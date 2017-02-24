@@ -1,0 +1,19 @@
+<ul class="list-group" *ngFor="let item of items let i = index">
+  <li class="list-group-item justify-content-between">
+    {{ item.main.task }}
+    <span class="badge badge-default badge-pill">{{ item.sub.length }}</span>
+  </li>
+  <li class="list-group-item justify-content-between" *ngFor="let sub of item.sub let j = index" #a>
+    <span *ngIf="sub.isEdit">
+      <input value="{{ sub.task }}" #subInput>
+      <i class="fa fa-times" aria-hidden="true" (click)="toggleEdit(sub, false)"></i>
+      <i class="fa fa-check" aria-hidden="true" (click)="toggleEdit(sub, subInput.value)"></i>
+    </span>
+    <span *ngIf="!sub.isEdit" task>
+      {{ sub.task }}
+      <i class="fa fa-pencil" aria-hidden="true" (click)="toggleEdit(sub, false)" *ngIf="mouseOn"></i>
+      <i class="fa fa-trash" aria-hidden="true" (click)="deleteTask(item, j)" *ngIf="mouseOn"></i>
+    </span>
+  </li>
+  <button type="button" class="btn btn-success" (click)="onAddSub(item)">+</button>
+</ul>

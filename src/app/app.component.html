@@ -1,0 +1,67 @@
+<app-goal-form></app-goal-form>
+<br>
+<hr>
+<br>
+<h1>
+  {{title}}
+</h1>
+<div class="row">
+  <div class="col-sm-8 offset-sm-2">
+    <form [formGroup]="goalForm" (ngSubmit)="onSubmit(gFrom)" #gFrom>
+      <div class="form-group">
+        <label for="name">이름</label>
+        <select class="form-control" id="name" formControlName="name">
+          <option>김별명</option>
+          <option>아메리</option>
+          <option>김카노</option>
+          <option>이영수</option>
+          <option>최맥북</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="thisWeek">주간목표</label>
+        <textarea class="form-control" id="thisWeek" formControlName="thisWeek"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="personal">개인목표</label>
+        <textarea class="form-control" id="personal" formControlName="personal"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="etc">지원요청사항</label>
+        <textarea class="form-control" id="etc" formControlName="etc"></textarea>
+      </div>
+
+
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <table class="table"  *ngFor="let goal of goals">
+      <thead>
+      <tr>
+        <th>{{ goal.name }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">지난주</th>
+        <td>지난주에 재밌었다.</td>
+      </tr>
+      <tr>
+        <th scope="row">주간목표</th>
+        <td>{{ goal.thisWeek }}</td>
+      </tr>
+      <tr>
+        <th scope="row">개인목표</th>
+        <td>{{ goal.personal }}</td>
+      </tr>
+      <tr>
+        <th scope="row">지원요청사항</th>
+        <td>{{ goal.etc }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
